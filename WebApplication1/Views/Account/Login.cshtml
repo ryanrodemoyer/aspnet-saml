@@ -1,0 +1,37 @@
+﻿@model WebApplication1.Models.LoginViewModel
+@{
+    ViewBag.Title = "Account Login";
+}
+
+<h2>Account Login</h2>
+
+<div class="row">
+    <div class="col-md-8">
+        @Html.ValidationSummary()
+
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <p>Email</p>
+            <p>@Html.TextBoxFor(x => x.Email)</p>
+            <p>Password</p>
+            <p>@Html.PasswordFor(x => x.Password)</p>
+            <p>Remember Me</p>
+            <p>@Html.CheckBoxFor(x => x.RememberMe)</p>
+            <input type="submit" value="Login"/>
+        }
+    </div>
+
+    <div class="col-md-4">
+        <p>
+            @Html.ActionLink("SP Initiated SSO (Okta)", "SingleSignOn", new {provider="okta"}, new { @class = "btn btn-primary btn-lg" })
+        </p> <p>
+            @Html.ActionLink("SP Initiated SSO (Azure AD)", "SingleSignOn", new {provider="azuread"}, new { @class = "btn btn-primary btn-lg" })
+        </p>
+        <hr />
+        <p>
+            <a href="https://dev-257161.oktapreview.com/home/mortgagecadencedev257161_demossoapp_1/0oagbcut4cNo4os6E0h7/alngbd9sv1W4YkFbO0h7" class = "btn btn-primary btn-lg">IDP Initiated SSO</a>
+        </p>
+    </div>
+</div>

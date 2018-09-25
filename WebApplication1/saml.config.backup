@@ -1,0 +1,46 @@
+﻿<?xml version="1.0"?>
+<SAMLConfiguration xmlns="urn:componentspace:SAML:2.0:configuration">
+  <ServiceProvider Name="http://DemoEntitySPId"
+                   Description="OWIN Example Service Provider"
+                   AssertionConsumerServiceUrl="~/SAML/AssertionConsumerService"
+                   LocalCertificateFile="Certificates\sp.pfx"
+                   LocalCertificatePassword="password"/>
+
+  <PartnerIdentityProviders>
+
+    <!-- Azure AD -->
+    <PartnerIdentityProvider Name="https://sts.windows.net/5f6a1902-c4dd-435a-8cb2-122315f532bf/"
+                             Description="Azure AD"
+                             SignLogoutRequest="true"
+                             WantLogoutResponseSigned="true"
+                             SingleSignOnServiceUrl="https://login.microsoftonline.com/5f6a1902-c4dd-435a-8cb2-122315f532bf/saml2"
+                             SingleLogoutServiceUrl="https://login.microsoftonline.com/common/wsfederation?wa=wsig"
+                             PartnerCertificateFile="Certificates\azure.cert"/>
+
+    <!-- Okta -->
+    <PartnerIdentityProvider Name="http://www.okta.com/exkgbcut4bpS80zci0h7"
+                             Description="Okta"
+                             SignAuthnRequest="true"
+                             SignLogoutRequest="true"
+                             SignLogoutResponse="true"
+                             WantLogoutRequestSigned="true"
+                             WantLogoutResponseSigned="true"
+                             SingleSignOnServiceUrl="https://dev-257161.oktapreview.com/app/mortgagecadencedev257161_demossoapp_1/exkgbcut4bpS80zci0h7/sso/saml"
+                             SingleLogoutServiceUrl="https://dev-257161.oktapreview.com/app/mortgagecadencedev257161_demossoapp_1/exkgbcut4bpS80zci0h7/slo/saml"
+                             PartnerCertificateFile="Certificates\okta.cert"/>
+
+    <!-- Google -->
+    <PartnerIdentityProvider Name="https://accounts.google.com/o/saml2?idpid=C03kl4l11"
+                             Description="Google"
+                             SignAuthnRequest="false"
+                             SingleSignOnServiceUrl="https://accounts.google.com/o/saml2/idp?idpid=C03kl4l11"
+                             PartnerCertificateFile="Certificates\google.cer"/>
+
+    <!-- PingOne -->
+    <PartnerIdentityProvider Name="https://pingone.com/idp/componentspace"
+                             Description="PingOne"
+                             SingleSignOnServiceUrl="https://sso.connect.pingidentity.com/sso/idp/SSO.saml2?idpid=f0f2b9e9-967a-4c79-bb00-15fe88401e13"
+                             SingleLogoutServiceUrl="https://sso.connect.pingidentity.com/sso/SLO.saml2"
+                             PartnerCertificateFile="Certificates\pingone.cer"/>
+  </PartnerIdentityProviders>
+</SAMLConfiguration>
